@@ -1,0 +1,7 @@
+[user]
+	name = Aman Choudhri
+	email = amanchoudhri@gmail.com
+[core]
+	editor = vim
+[init]
+	defaultBranch = main
