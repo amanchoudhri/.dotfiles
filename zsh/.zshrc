@@ -11,9 +11,10 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Useful aliases for flatiron
-alias imatwork='ssh -fN rusty; ssh rusty'
-alias leavingwork='ssh -O exit rusty'
+# VSCode is stupid and won't put this in the path
+if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+    fpath=(/mnt/sw/nix/store/xxs603ics39vljbkzf5zrfwbrnymvc8k-zsh-5.8/share/zsh/site-functions /mnt/sw/nix/store/xxs603ics39vljbkzf5zrfwbrnymvc8k-zsh-5.8/share/zsh/5.8/functions $fpath)
+fi
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
