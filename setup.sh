@@ -31,7 +31,7 @@ make install
 # stow the dotfiles
 echo "Stowing dotfiles"
 cd $DOTFILES_DIR
-.local/bin/stow git vim ssh p10k zsh
+.local/bin/stow git vim ssh p10k zsh aliases
 
 exec zsh
 

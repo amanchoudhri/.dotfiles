@@ -1,0 +1,6 @@
+# placeholder document. automatically sourced by ~/.zshrc
+
+alias imatwork='ssh -fN rusty; ssh rusty'
+alias leavingwork='ssh -O exit rusty'
+
+

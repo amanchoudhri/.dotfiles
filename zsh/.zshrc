@@ -16,6 +16,12 @@ if [[ "$TERM_PROGRAM" == "vscode" ]]; then
     fpath=(/mnt/sw/nix/store/xxs603ics39vljbkzf5zrfwbrnymvc8k-zsh-5.8/share/zsh/site-functions /mnt/sw/nix/store/xxs603ics39vljbkzf5zrfwbrnymvc8k-zsh-5.8/share/zsh/5.8/functions $fpath)
 fi
 
+# if the file $HOME/.aliases exists and we have read permissions
+# source it
+if [[ -r $HOME/.aliases ]]; then
+    source $HOME/.aliases
+fi
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
