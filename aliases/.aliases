@@ -3,4 +3,53 @@
 alias imatwork='ssh -fN rusty; ssh rusty'
 alias leavingwork='ssh -O exit rusty'
 
+vactivate() {
+    # if $1 is not a directory in venv directory,
+    # or a path, just activate 'main' 
+    source ~/.venvs/main/bin/activate
+}
+
+loadmodules() {
+    # add quiet flag
+    module -q purge ;
+    module load slurm python/3.9 git/2
+}
+
+setupenv() {
+    loadmodules ;
+    vactivate ;
+}
+
+evalmuse() {
+    JOB_ID=$(sbatch --parsable ~/shell_scripts/run_and_eval_muse.sh "$@")
+    echo $JOB_ID >> ~/.slurm/.muserunning
+    echo "Run the following command to access the logs:"
+    echo "less +F ~/logs/run_and_eval_jackknife_${JOB_ID}.log"
+}
+
+cancelmuse() {
+    cat ~/.slurm/.muserunning | xargs scancel
+}
+
+traincnn() {
+    CONFIG_FILE=$1
+    SCRIPT_PATH=~/gerbilizer
+    if [[ $2 == "--finetuning" ]]; then
+        SCRIPT_NAME=run_finetuning.sh
+        LOG_FILENAME=finetune_model
+    else
+        SCRIPT_NAME=run_gpu.sh
+        LOG_FILENAME=train_model
+    fi
+    SCRIPT="${SCRIPT_PATH}/${SCRIPT_NAME}"
+    JOB_ID=$(sbatch --parsable $SCRIPT /mnt/home/atanelus/ceph/iteration/small_room_4/ $CONFIG_FILE)
+    echo "WEIGHTS:"
+    echo "less +F ~/logs/train_model_loss_debugging_1.log"
+    echo "GENERAL TASK LOG:"
+    echo "less +F ~/gerbilizer-cov/slurm_logs/${LOG_FILENAME}_${JOB_ID}.log"
+}
+
+alias sq='squeue -a -u $USER'
+
+alias gimmegpu='module load slurm; srun --constraint=v100 -t 5:00:00 -N 1 --gpus=1 -p gpu --pty bash -i;'
 
