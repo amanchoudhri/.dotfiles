@@ -11,7 +11,10 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# fpath=(/mnt/sw/nix/store/xxs603ics39vljbkzf5zrfwbrnymvc8k-zsh-5.8/share/zsh/site-functions /mnt/sw/nix/store/xxs603ics39vljbkzf5zrfwbrnymvc8k-zsh-5.8/share/zsh/5.8/functions $fpath)
+
+# add some extra magic because zsh is weird
+ZSH_DIR="$(dirname $(which zsh))/../share/zsh/5.8"
+fpath=($ZSH_DIR/functions $fpath)
 
 # VSCode is stupid and won't put this in the path
 # if [[ "$TERM_PROGRAM" == "vscode" ]]; then
