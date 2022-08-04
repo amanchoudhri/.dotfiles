@@ -1,6 +1,6 @@
 # install oh my zsh
 # use the unattended flag so that it doesn't run zsh after installing
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+git clone https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh
 
 # install powerlevel 10k
 echo "Installing p10k..."
@@ -20,13 +20,15 @@ rm ~/.zshrc
 # install GNU stow into the directory
 DOTFILES_DIR=$(pwd)
 echo "Downloading GNU stow into ${DOTFILES_DIR}/.stow"
-mkdir .stow && cd .stow
-wget https://ftp.gnu.org/gnu/stow/stow-2.3.1.tar.gz
-tar -xf stow-2.3.1.tar.gz
-cd stow-2.3.1
+
+mkdir .stow && cd .stow \
+    && wget https://ftp.gnu.org/gnu/stow/stow-2.3.1.tar.gz \
+    && tar -xf stow-2.3.1.tar.gz
+
 echo "Installing GNU stow into ${DOTFILES_DIR}/.local"
-./configure --prefix=$DOTFILES_DIR/.local
-make install
+cd stow-2.3.1 \
+    && ./configure --prefix=$DOTFILES_DIR/.local \
+    && make install
 
 # stow the dotfiles
 echo "Stowing dotfiles"
