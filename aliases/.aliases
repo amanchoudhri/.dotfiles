@@ -1,8 +1,5 @@
 # placeholder document. automatically sourced by ~/.zshrc
 
-alias imatwork='ssh -fN rusty; ssh rusty'
-alias leavingwork='ssh -O exit rusty'
-
 vactivate() {
     # if $1 is not a directory in venv directory,
     # or a path, just activate 'main' 
