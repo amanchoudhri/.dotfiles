@@ -1,3 +1,10 @@
+"Automatically install vim plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 set nu
 filetype plugin on
 syntax on
@@ -18,8 +25,21 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+"Onehalf theme plugin
+call plug#begin()
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+call plug#end()
+
+colorscheme onehalfdark
+
 "Config settings for lightline
+let g:lightline = {
+      \ 'colorscheme': 'onehalfdark',
+      \ }
 set laststatus=2
 set noshowmode
 
-set ttimeout ttimeoutlen=10
+set ttimeout ttimeoutlen=5
+
+"Onehalf theme plugin
+"
