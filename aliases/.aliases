@@ -3,4 +3,13 @@
 alias imatwork='ssh -fN rusty; ssh rusty'
 alias leavingwork='ssh -O exit rusty'
 
+managesite () {
+    DEFAULT_DIR="${HOME}/repos/amanchoudhri.github.io"
+    WEBSITE_DIR="${GITHUB_PAGES_DIRECTORY:-$DEFAULT_DIR}"
+    cd $WEBSITE_DIR && \
+        venv/bin/python manage.py "$@" && \
+        git add content.yaml index.html && \
+        git commit -m "Update site content" && \
+        git push
+}
 
