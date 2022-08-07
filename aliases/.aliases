@@ -4,12 +4,14 @@ alias imatwork='ssh -fN rusty; ssh rusty'
 alias leavingwork='ssh -O exit rusty'
 
 managesite () {
+    LATEST_RESUME="${HOME}/Documents/resumes/Resume.pdf"
     DEFAULT_DIR="${HOME}/repos/amanchoudhri.github.io"
     WEBSITE_DIR="${GITHUB_PAGES_DIRECTORY:-$DEFAULT_DIR}"
-    cd $WEBSITE_DIR && \
-        venv/bin/python manage.py "$@" && \
-        git add content.yaml index.html && \
-        git commit -m "Update site content" && \
+    cd $WEBSITE_DIR && venv/bin/python manage.py "$@"
+    echo "Copying and committing latest resume..."
+    cp $LATEST_RESUME $WEBSITE_DIR
+    cd $WEBSITE_DIR && git add resume.pdf && \
+        git commit -m "Update resume" && \
         git push
 }
 
