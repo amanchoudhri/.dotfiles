@@ -17,3 +17,9 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+"Config settings for lightline
+set laststatus=2
+set noshowmode
+
+set ttimeout ttimeoutlen=10
