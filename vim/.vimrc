@@ -1,4 +1,4 @@
-"Automatically install vim plug
+" Automatically install vim plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -27,19 +27,19 @@ nnoremap <C-l> <C-w>l
 
 "Onehalf theme plugin
 call plug#begin()
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
+
+Plug 'mhartington/oceanic-next'
+Plug 'itchyny/lightline.vim'
+
 call plug#end()
 
-colorscheme onehalfdark
+colorscheme OceanicNext
 
-"Config settings for lightline
-let g:lightline = {
-      \ 'colorscheme': 'onehalfdark',
-      \ }
+"Lightline settings
+let g:lightline = {'colorscheme': 'oceanicnext'}
+
 set laststatus=2
 set noshowmode
 
 set ttimeout ttimeoutlen=5
 
-"Onehalf theme plugin
-"
