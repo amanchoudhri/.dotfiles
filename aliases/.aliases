@@ -1,4 +1,4 @@
-# placeholder document. automatically sourced by ~/.zshrc
+# automatically sourced by ~/.zshrc
 
 vactivate() {
     # if $1 is not a directory in venv directory,
@@ -47,6 +47,7 @@ traincnn() {
 }
 
 alias sq='squeue -a -u $USER'
+alias wq="watch 'squeue -a -u $USER'"
 
-alias gimmegpu='module load slurm; srun --constraint=v100 -t 5:00:00 -N 1 --gpus=1 -p gpu --pty bash -i;'
+alias gimmegpu='module load slurm; srun --constraint=v100 -t 12:00:00 -N 1 --gpus=1 -p gpu --pty bash -i;'
 
