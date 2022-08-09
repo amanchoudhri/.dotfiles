@@ -33,7 +33,7 @@ cd stow-2.3.1 \
 # stow the dotfiles
 echo "Stowing dotfiles"
 cd $DOTFILES_DIR
-.local/bin/stow git vim ssh p10k zsh aliases
+.local/bin/stow git vim ssh p10k zsh aliases tmux
 
 # install lightline for vim
 git clone https://github.com/itchyny/lightline.vim ~/.vim/pack/plugins/start/lightline
