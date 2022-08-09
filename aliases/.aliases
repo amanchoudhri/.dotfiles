@@ -51,3 +51,6 @@ alias wq="watch 'squeue -a -u $USER'"
 
 alias gimmegpu='module load slurm; srun --constraint=v100 -t 12:00:00 -N 1 --gpus=1 -p gpu --pty bash -i;'
 
+alias nvim='~/.local/bin/nvim'
+alias v='~/.local/bin/nvim'
+
