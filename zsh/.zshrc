@@ -23,8 +23,12 @@ fpath=($ZSH_DIR/functions $fpath)
 
 # if the file $HOME/.aliases exists and we have read permissions
 # source it
-if [[ -r $HOME/.aliases ]]; then
-    source $HOME/.aliases
+if [[ -r $HOME/.aliases.shared ]]; then
+    source $HOME/.aliases.shared
+fi
+
+if [[ -r $HOME/.aliases.local ]]; then
+    source $HOME/.aliases.local
 fi
 
 # Set name of the theme to load --- if set to "random", it will
