@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# vim: set filetype=bash :
+
+classes=$(find ~/aman/classes -mindepth 2 -maxdepth 2 -type d)
+otherProjects=$(find ~/aman -mindepth 2 -maxdepth 2 -not -path "*/aman/classes/*" -type d)
+
+selectedDir=$(echo -e "${classes}\n${otherProjects}" | fzf)
+
+if [[ -z selectedDir ]]; then
+    exit 0
+fi
+
+tmuxRunning=$(pgrep tmux)
+sessionName=$(basename $selectedDir)
+
+# if not already in a tmux session and tmux isn't running
+# just create and attach a session 
+if [[ -z $tmuxRunning ]]; then
+    tmux new-session -c $selectedDir -s $sessionName 
+elif [[ -z $TMUX ]]; then
+    tmux new-session -A -c $selectedDir -s $sessionName 
+else
+    tmux new-session -d -A -c $selectedDir -s $sessionName 
+    tmux switch-client -t $sessionName
+fi

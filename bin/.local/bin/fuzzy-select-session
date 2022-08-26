@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# vim: set filetype=bash :
+currentSession=$(tmux display-message -p "#{session_name}")
+tmux display-popup -EE -w 60% -h 30% "
+    tmux list-session -F '#{session_name}' \
+    | fzf --header='Current session: ${currentSession}' --header-first --reverse --no-info \
+    | xargs tmux switch-client -t
+    "
