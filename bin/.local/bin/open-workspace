@@ -1,10 +1,21 @@
 #!/usr/bin/env bash
 # vim: set filetype=bash :
 
-classes=$(find ~/aman/classes -mindepth 2 -maxdepth 2 -type d)
-otherProjects=$(find ~/aman -mindepth 2 -maxdepth 2 -not -path "*/aman/classes/*" -type d)
+if [[ $(hostname) =~ "mbp" ]]; then
+    classes=$(find ~/aman/classes -mindepth 2 -maxdepth 2 -type d)
+    otherProjects=$(find ~/aman -mindepth 2 -maxdepth 2 -not -path "*/aman/classes/*" -type d)
 
-selectedDir=$(echo -e "${classes}\n${otherProjects}" | fzf)
+    selectedDir=$(echo -e "${classes}\n${otherProjects}" | fzf)
+
+elif [[ $(hostname) =~ "rusty" ]]; then
+    repos=$(find ~/repos -mindepth 1 -maxdepth 1 -type d)
+    otherDirs=$(find ~ -mindepth 1 -maxdepth 1 -type d \
+        -not -path "*/achoudhri/.*" \
+        -and -not -path "*/achoudhri/repos/*" \
+    )
+    selectedDir=$(echo -e "${repos}\n${otherDirs}" | fzf)
+fi
+
 
 if [[ -z selectedDir ]]; then
     exit 0
