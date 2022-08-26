@@ -10,6 +10,7 @@ set numberwidth=4
 
 filetype plugin on
 syntax on
+
 "Force wrap lines in a git commit to 72 characters
 au FileType gitcommit setlocal tw=72
 
@@ -31,6 +32,9 @@ set ignorecase
 set smartcase
 
 set termguicolors
+
+"Don't wrap too-long text
+set nowrap
 
 "Map the save key to \w
 nnoremap <leader>w :w<cr>
@@ -88,6 +92,8 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 
+"LaTeX plugin
+Plug 'lervag/vimtex'
 
 call plug#end()
 
@@ -103,7 +109,8 @@ require'nvim-treesitter.configs'.setup {
     ensure_installed = { "python" },
     auto_install = true,
     highlight = {
-        enable = true
+        enable = true,
+        disable = { "latex" }
     }
 }
 
@@ -116,9 +123,16 @@ require("trouble").setup {}
 
 EOF
 
+"VimTeX settings
+let g:tex_flavor='latex'
+let g:vimtex_compiler_latexmk = {'build_dir': 'aux'}
+if has('macunix')
+    let g:vimtex_view_method = 'skim'
+endif
+
 let g:chadtree_settings = { 'theme.text_colour_set': 'nord', 'keymap.trash': [] }
 " Easy keybinding to open chadtree
-nnoremap t <cmd>CHADopen<cr>
+nnoremap <C-t> <cmd>CHADopen<cr>
 
 
 "Lightline settings
