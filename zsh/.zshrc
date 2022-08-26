@@ -31,6 +31,11 @@ if [[ -r $HOME/.aliases.local ]]; then
     source $HOME/.aliases.local
 fi
 
+# if we have a zsh profile, add it
+if [[ -r $HOME/.zsh_profile ]]; then
+    source $HOME/.zsh_profile
+fi
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
