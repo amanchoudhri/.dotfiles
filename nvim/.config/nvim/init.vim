@@ -62,7 +62,7 @@ call plug#begin('~/.config/nvim/plugins')
 "Themes
 "Plug 'mhartington/oceanic-next'
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
-Plug 'nvim-lualine/lualine.vim'
+Plug 'nvim-lualine/lualine.nvim'
 
 " CHADTree - file manager
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
