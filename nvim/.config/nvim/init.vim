@@ -6,9 +6,7 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 set nu
-set numberwidth=4
 
-filetype plugin on
 syntax on
 
 "Force wrap lines in a git commit to 72 characters
@@ -19,6 +17,8 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set softtabstop=4
+
+set smartindent
 
 "Intuitive splits
 set splitbelow
@@ -31,7 +31,16 @@ set scrolloff=12
 set ignorecase
 set smartcase
 
+"Always display space for diagnostic icons in gutter
+set signcolumn=yes
+
 set termguicolors
+
+"Temporarily keep these for lightline
+set laststatus=2
+set noshowmode
+
+set ttimeout ttimeoutlen=5
 
 "Don't wrap too-long text
 set nowrap
@@ -53,7 +62,7 @@ call plug#begin('~/.config/nvim/plugins')
 "Themes
 "Plug 'mhartington/oceanic-next'
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
-Plug 'itchyny/lightline.vim'
+Plug 'nvim-lualine/lualine.vim'
 
 " CHADTree - file manager
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
@@ -67,6 +76,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-nvim-lua'
 
@@ -82,28 +92,43 @@ Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 
 
+" Basic LSP keybindings + settings
 Plug 'VonHeikemen/lsp-zero.nvim'
 
 " Telescope
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
-"Diagnostics formatting
+"Diagnostics list
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
+
+"Scrollbar
+Plug 'petertriho/nvim-scrollbar'
+
+"Lightbulb for suggestions
+Plug 'kosayoda/nvim-lightbulb'
+Plug 'antoinemadec/FixCursorHold.nvim'
 
 "LaTeX plugin
 Plug 'lervag/vimtex'
 
 call plug#end()
 
-let g:catppuccin_flavour = "frappe"
 lua << EOF
+vim.g.catppuccin_flavour = "frappe"
 require("catppuccin").setup()
-EOF
-colorscheme catppuccin
+vim.cmd [[colorscheme catppuccin]]
 
-lua << EOF
+-- Status line
+require("lualine").setup({
+    options = {
+        theme = "catppucin"
+    },
+    extensions = { 'chadtree' }
+})
+
+-- Treesitter config
 require 'nvim-treesitter'.setup {}
 require'nvim-treesitter.configs'.setup {
     ensure_installed = { "python" },
@@ -111,16 +136,55 @@ require'nvim-treesitter.configs'.setup {
     highlight = {
         enable = true,
         disable = { "latex" }
+    },
+    indent = {
+        enable = true,
+        disable = { "python" }
     }
 }
 
 local lsp = require('lsp-zero')
 
+
 lsp.preset('recommended')
+
+-- Add cmp-nvim-lsp-signature-help
+lsp.setup_nvim_cmp({
+    sources = {
+        {name = 'path'},
+        {name = 'nvim_lsp', keyword_length = 2},
+        {name = 'nvim_lsp_signature_help'},
+        {name = 'buffer', keyword_length = 3},
+        {name = 'luasnip', keyword_length = 2}
+    }
+})
+
+-- Recommended sumneko lua config. See:
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
+-- For more information.
+
+lsp.configure('sumneko_lua', { settings = {
+    Lua = {
+        runtime = {
+            version = 'LuaJIT',
+        },
+        diagnostics = {
+            globals = {'vim'},
+        },
+        workspace = {
+            library = vim.api.nvim_get_runtime_file("", true),
+        },
+        telemetry = {
+            enable = false,
+        },
+    },
+}})
+
 lsp.setup()
 
 require("trouble").setup {}
 
+require("scrollbar").setup {}
 EOF
 
 "VimTeX settings
@@ -130,16 +194,7 @@ if has('macunix')
     let g:vimtex_view_method = 'skim'
 endif
 
-let g:chadtree_settings = { 'theme.text_colour_set': 'nord', 'keymap.trash': [] }
+let g:chadtree_settings = { 'theme.text_colour_set': 'env', 'keymap.trash': [] }
 " Easy keybinding to open chadtree
 nnoremap <C-t> <cmd>CHADopen<cr>
-
-
-"Lightline settings
-let g:lightline = {'colorscheme': 'catppuccin'}
-
-set laststatus=2
-set noshowmode
-
-set ttimeout ttimeoutlen=5
 
