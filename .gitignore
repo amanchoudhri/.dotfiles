@@ -1,4 +1,4 @@
 # directory into which GNU stow is downloaded 
 .stow
 # directory into which it's installed
-./.local
+/.local
