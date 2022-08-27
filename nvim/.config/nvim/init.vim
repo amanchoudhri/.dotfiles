@@ -123,7 +123,7 @@ vim.cmd [[colorscheme catppuccin]]
 -- Status line
 require("lualine").setup({
     options = {
-        theme = "catppucin"
+        theme = "catppuccin"
     },
     extensions = { 'chadtree' }
 })
