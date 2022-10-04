@@ -14,7 +14,7 @@ require'nvim-treesitter.configs'.setup {
 
 local lsp = require('lsp-zero')
 
-lsp.preset('recommended')
+lsp.preset('lsp-compe')
 
 -- Recommended sumneko lua config. See:
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
@@ -38,4 +38,4 @@ lsp.configure('sumneko_lua', { settings = {
 }})
 
 lsp.setup()
---
+
