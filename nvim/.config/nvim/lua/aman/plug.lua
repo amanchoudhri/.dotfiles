@@ -13,15 +13,16 @@ Plug('nvim-treesitter/nvim-treesitter', {['do'] = 'TSUpdate'})
 Plug('hrsh7th/nvim-cmp')
 Plug('hrsh7th/cmp-buffer')
 Plug('hrsh7th/cmp-path')
-Plug('saadparwaiz1/cmp_luasnip')
 Plug('hrsh7th/cmp-nvim-lsp')
 Plug('hrsh7th/cmp-nvim-lsp-signature-help')
 Plug('hrsh7th/cmp-cmdline')
 Plug('hrsh7th/cmp-nvim-lua')
 
---  Snippets
+--  Snippet engine
 Plug('L3MON4D3/LuaSnip')
-Plug('rafamadriz/friendly-snippets')
+
+-- Gilles Castel LuaSnip port
+Plug('iurimateus/luasnip-latex-snippets.nvim')
 
 -- LSP Config
 Plug('neovim/nvim-lspconfig')
@@ -29,7 +30,6 @@ Plug('neovim/nvim-lspconfig')
 -- LSP Installer
 Plug('williamboman/mason.nvim')
 Plug('williamboman/mason-lspconfig.nvim')
-
 
 -- Basic LSP keybindings + settings
 Plug('VonHeikemen/lsp-zero.nvim')
