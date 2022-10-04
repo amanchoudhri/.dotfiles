@@ -18,7 +18,7 @@ fi
 
 
 if [[ -z selectedDir ]]; then
-    exit 0
+    exit
 fi
 
 tmuxRunning=$(pgrep tmux)
