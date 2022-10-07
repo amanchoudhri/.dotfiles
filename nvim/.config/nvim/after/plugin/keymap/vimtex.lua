@@ -1,0 +1,1 @@
+-- Useful keyboard shortcut to reset syntax parsing
