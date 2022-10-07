@@ -12,8 +12,10 @@ require'nvim-treesitter.configs'.setup {
     }
 }
 
+
 local lsp = require('lsp-zero')
 
+-- Setup everything except nvim-cmp
 lsp.preset('lsp-compe')
 
 -- Recommended sumneko lua config. See:

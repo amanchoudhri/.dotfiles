@@ -44,4 +44,9 @@ Plug('petertriho/nvim-scrollbar')
 -- LaTeX plugin
 Plug('lervag/vimtex')
 
+-- Commenting util plugin
+Plug('numToStr/Comment.nvim')
+
 vim.call('plug#end')
+
+require('Comment').setup()
