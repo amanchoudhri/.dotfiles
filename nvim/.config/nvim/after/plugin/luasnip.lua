@@ -12,20 +12,22 @@ ls.config.set_config({
 -- via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
 vim.keymap.set(
     {'i', 's'},
-    '<silent><expr> <Tab>',
+    '<Tab>',
     function()
         if ls.expand_or_jumpable() then
-            ls.expand_or_jump()
-        else
-            return '<Tab>'
+            return '<Plug>luasnip-expand-or-jump'
         end
-    end
+    end, { remap = true, expr = true, silent = true }
 )
 -- -1 for jumping backwards.
 vim.keymap.set(
     {'i', 's'},
-    '<silent> <S-Tab>',
-    "<cmd>lua require('luasnip').jump(-1)<CR>"
+    '<S-Tab>',
+    function()
+        if ls.jumpable(-1) then
+            ls.jump(-1)
+        end
+    end, { silent = true }
 )
 
 -- expand snippet or jump forwards 
@@ -67,7 +69,7 @@ ls.add_snippets("tex", {
         i(0)
     }),
     -- use equ to start an equation environment
-    snippet("equ", {
+    snippet("eqn", {
         t({"\\begin{equation}", ""}),
         i(1),
         t({"", "\\label{eq:"}), i(2), t("}"),
