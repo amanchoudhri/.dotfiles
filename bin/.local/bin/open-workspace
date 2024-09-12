@@ -3,7 +3,7 @@
 
 if [[ $(hostname) =~ "mbp" ]]; then
     classes=$(find ~/aman/classes -mindepth 2 -maxdepth 2 -type d)
-    otherProjects=$(find ~/aman -mindepth 2 -maxdepth 2 -not -path "*/aman/classes/*" -type d)
+    otherProjects=$(find ~/aman -mindepth 1 -maxdepth 2 -not -path "*/aman/classes/*" -type d)
 
     selectedDir=$(echo -e "${classes}\n${otherProjects}" | fzf)
 
