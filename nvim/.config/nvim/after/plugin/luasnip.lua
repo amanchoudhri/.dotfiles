@@ -17,7 +17,7 @@ vim.keymap.set(
         if ls.expand_or_jumpable() then
             return '<Plug>luasnip-expand-or-jump'
         end
-    end, { remap = true, expr = true, silent = true }
+    end, { expr = true, silent = true }
 )
 -- -1 for jumping backwards.
 vim.keymap.set(

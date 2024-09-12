@@ -47,6 +47,10 @@ Plug('lervag/vimtex')
 -- Commenting util plugin
 Plug('numToStr/Comment.nvim')
 
+
+-- Git util
+Plug('tpope/vim-fugitive')
+
 vim.call('plug#end')
 
 require('Comment').setup()
