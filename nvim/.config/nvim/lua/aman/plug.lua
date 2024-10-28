@@ -7,7 +7,7 @@ Plug('catppuccin/nvim', {as =  'catppuccin'})
 Plug('nvim-lualine/lualine.nvim')
 
 -- Treesitter
-Plug('nvim-treesitter/nvim-treesitter', {['do'] = 'TSUpdate'})
+Plug('nvim-treesitter/nvim-treesitter')
 
 --Autocompletion
 Plug('hrsh7th/nvim-cmp')
@@ -36,7 +36,7 @@ Plug('VonHeikemen/lsp-zero.nvim')
 
 -- Telescope
 Plug('nvim-lua/plenary.nvim')
-Plug('nvim-telescope/telescope.nvim', { tag = '0.1.0' })
+Plug('nvim-telescope/telescope.nvim')
 
 -- Scrollbar
 Plug('petertriho/nvim-scrollbar')
