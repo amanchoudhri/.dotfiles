@@ -2,6 +2,10 @@
 
 Resources that I've found helpful when configuring tmux/nvim etc on new servers.
 
+## If the `glibc` version is not found or too old
+
+Try an "unsuppoorted" neovim release version from https://github.com/neovim/neovim-releases.
+
 ## If `nvim` colors aren't displaying correctly in `tmux` through `ssh`
 
 Configuration to add to `.tmux.conf`
