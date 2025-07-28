@@ -1,1 +1,2 @@
-# just a placeholder file for shared aliases
+# vim: set filetype=bash:
+alias v="nvim"
