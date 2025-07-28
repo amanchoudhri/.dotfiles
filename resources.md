@@ -2,6 +2,13 @@
 
 Resources that I've found helpful when configuring tmux/nvim etc on new servers.
 
+## Nvim quickstart
+1. Install `vim-plug`, using the instructions [here](https://github.com/junegunn/vim-plug). It involves putting a `plug.vim` file into the nvim "autoload" directory. On nvim startup, run `:PlugInstall`.
+
+2. Add Mason LSP servers. As of Jul 28, 2025, some that I use are: `clangd`, `html-lsp`, `json-lsp`, `lua-language-server`, `markdownlint`, `pyright`, `texlab`, `typescript-language-server`, `vim-language-server`, and `yaml-language-server`.
+
+
+
 ## If the `glibc` version is not found or too old
 
 Try an "unsuppoorted" neovim release version from https://github.com/neovim/neovim-releases.
