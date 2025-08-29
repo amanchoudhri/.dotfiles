@@ -5,3 +5,7 @@
 	editor = nvim
 [init]
 	defaultBranch = main
+[log]
+    decorate = true
+[push]
+	autoSetupRemote = true
